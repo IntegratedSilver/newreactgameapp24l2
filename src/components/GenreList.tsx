@@ -1,3 +1,4 @@
+// imports
 ////imports
 import { Button, HStack, Image, List, ListItem, Spinner } from "@chakra-ui/react";
 import useData from "../hooks/useData";
@@ -8,18 +9,11 @@ interface Props {
     onSelectedGenre: (genre:Genre) => void;
     selectedGenre: Genre | null
 }
-
-
 const GenreList = ({onSelectedGenre,selectedGenre}:Props) => {
-
     ///usestates
     const {data,isLoading} = useData<Genre>('/genres')
     ///useEffects
-
-
     //helper functions
-   
-    
   return (
     <>
     {/* jsx goes anything render */}
@@ -36,5 +30,4 @@ const GenreList = ({onSelectedGenre,selectedGenre}:Props) => {
     </>
   )
 }
-
 export default GenreList

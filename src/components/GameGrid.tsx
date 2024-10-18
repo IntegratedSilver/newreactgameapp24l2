@@ -36,13 +36,13 @@ const GameGrid = ({gameQuery}:Props) => {
             </GameCardContainer>
           ))}
 
-        {data.map((game) => (
+        {data?.results.map((game) => (
           <GameCardContainer key={game.id}>
             <GameCard game={game} ></GameCard>
           </GameCardContainer>
         ))}
       </SimpleGrid>
-      {error && <Text color={"red"}>{error}</Text>}
+      {/* {error && <Text color={"red"}>{error}</Text>} */}
     </>
   );
 };
