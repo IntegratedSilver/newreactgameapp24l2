@@ -13,9 +13,9 @@ gameQuery: GameQuery
 }
 
 const GameGrid = ({gameQuery}:Props) => {
-  //custom game hook
+
   const { data, error, isLoading } = useGames(gameQuery);
-  //We other helper function to add, delete or update data
+
 
   const skeleton = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -23,7 +23,7 @@ const GameGrid = ({gameQuery}:Props) => {
 
   return (
     <>
-      {/* display our data ul li grid table usually map it with unique key  {1} 4px  */}
+     
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
         spacing={3}
@@ -42,7 +42,6 @@ const GameGrid = ({gameQuery}:Props) => {
           </GameCardContainer>
         ))}
       </SimpleGrid>
-      {/* {error && <Text color={"red"}>{error}</Text>} */}
     </>
   );
 };
