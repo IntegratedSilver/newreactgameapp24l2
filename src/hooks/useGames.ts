@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery} from "@tanstack/react-query";
 import { GameQuery } from "../App";
 import { CACHE_KEY_GAMES } from "../constant";
 import { Platform } from "./usePlatforms";
@@ -20,18 +20,21 @@ export interface Game {
 // useGames hook refactored to use useQuery
 const useGames = (gameQuery: GameQuery) =>
 
-  useQuery<FetchResponse<Game>>({
+  useInfiniteQuery<FetchResponse<Game>>({
   queryKey: [CACHE_KEY_GAMES, gameQuery],
-  queryFn: () =>
+  queryFn: ({pageParam = 1}) =>
               apiClient
                 .getAll({
                   params:{
                             genres:gameQuery.genre?.id, 
                             parent_platforms:gameQuery.platform?.id,
                             ordering:gameQuery.sortOrder,
-                            search:gameQuery.searchText
+                            search:gameQuery.searchText, page: pageParam
                         }
-                })
+                }),
+                getNextPageParam: (lastPage, allPages) => {
+                  return allPages.length + 1
+                }
    
   });
 
